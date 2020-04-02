@@ -7,8 +7,14 @@ const save = document.querySelector("#jsSave");
 
 let paintOption = false;
 let drawMode = true;
-ctx.strokeStyle = "#2c2c2c";
+const INITIAL_COLOR = "#2c2c2c";
+const CAVAS_SIZE = 650;
+
+ctx.strokeStyle = INITIAL_COLOR;
+ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = 2.5;
+canvas.width = CAVAS_SIZE;
+canvas.height = CAVAS_SIZE;
 
 function mouseDown() {
   paintOption = true;
@@ -58,8 +64,9 @@ function handleMode() {
 
 function changeBGC(e) {
   const bgColor = e.target.style.backgroundColor;
-  console.log(bgColor);
-  canvas.style.backgroundColor = bgColor;
+  ctx.fillStyle = bgColor;
+  ctx.rect(0, 0, CAVAS_SIZE, CAVAS_SIZE);
+  ctx.fill();
 }
 
 function saveImg() {
