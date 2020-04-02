@@ -11,7 +11,6 @@ const INITIAL_COLOR = "#2c2c2c";
 const CAVAS_SIZE = 650;
 
 ctx.strokeStyle = INITIAL_COLOR;
-ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = 2.5;
 canvas.width = CAVAS_SIZE;
 canvas.height = CAVAS_SIZE;
@@ -82,9 +81,17 @@ function init() {
   canvas.addEventListener("mousedown", mouseDown);
   canvas.addEventListener("mouseup", paintOff);
   canvas.addEventListener("mouseleave", paintOff);
+  canvas.addEventListener("contextmenu", e => {
+    e.preventDefault();
+  });
+
   colors.addEventListener("click", changeColor);
   range.addEventListener("input", changeWidth);
   mode.addEventListener("click", handleMode);
   save.addEventListener("click", saveImg);
+
+  ctx.rect(0, 0, CAVAS_SIZE, CAVAS_SIZE);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fill();
 }
 init();
