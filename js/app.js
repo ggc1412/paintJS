@@ -3,6 +3,7 @@ const canvas = document.querySelector("#jsCanvas"),
 const colors = document.querySelector("#jsColors");
 const range = document.querySelector("#jsrange");
 const mode = document.querySelector("#jsMode");
+const save = document.querySelector("#jsSave");
 
 let paintOption = false;
 let drawMode = true;
@@ -61,6 +62,14 @@ function changeBGC(e) {
   canvas.style.backgroundColor = bgColor;
 }
 
+function saveImg() {
+  const url = canvas.toDataURL();
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "My_Drawing.png";
+  link.click();
+}
+
 function init() {
   canvas.addEventListener("mousemove", mouseMove);
   canvas.addEventListener("mousedown", mouseDown);
@@ -69,5 +78,6 @@ function init() {
   colors.addEventListener("click", changeColor);
   range.addEventListener("input", changeWidth);
   mode.addEventListener("click", handleMode);
+  save.addEventListener("click", saveImg);
 }
 init();
